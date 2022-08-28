@@ -1,3 +1,4 @@
-vim.cmd[[colorscheme tokyonight]]
+vim.cmd[[colorscheme nvcode]]
 
-vim.g.tokyonight_style = "night"
+-- vim.cmd[[colorscheme tokyonight]]
+-- vim.g.tokyonight_style = "night"

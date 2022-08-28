@@ -17,4 +17,28 @@ return require('packer').startup(function(use)
 	use 'L3MON4D3/LuaSnip'
 	use 'saadparwaiz1/cmp_luasnip'
 	use 'onsails/lspkind-nvim'
+
+	use 'nvim-lua/plenary.nvim'
+	use 'nvim-lua/popup.nvim'
+	use 'nvim-telescope/telescope.nvim'
+
+	use 'nvim-treesitter/nvim-treesitter'
+	use 'christianchiarulli/nvcode-color-schemes.vim'
+
+	use 'jiangmiao/auto-pairs'
+	use 'tpope/vim-surround'
+
+	use {
+		'kyazdani42/nvim-tree.lua',
+		requires = {
+			'kyazdani42/nvim-web-devicons', -- optional, for file icons
+		},
+	}
+
+	use 'folke/which-key.nvim'
+
+	use {"akinsho/toggleterm.nvim", tag = 'v2.*'}
+
+	use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
 end)
+
