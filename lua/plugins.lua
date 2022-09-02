@@ -10,6 +10,7 @@ return require('packer').startup(function(use)
 	use 'folke/tokyonight.nvim'
 	use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
 	use 'terrortylor/nvim-comment'
+	use 'jose-elias-alvarez/null-ls.nvim'
 
 	-- Autocompletion
 	use 'hrsh7th/nvim-cmp'
@@ -37,8 +38,7 @@ return require('packer').startup(function(use)
 
 	use 'folke/which-key.nvim'
 
-	use {"akinsho/toggleterm.nvim", tag = 'v2.*'}
+	use { "akinsho/toggleterm.nvim", tag = 'v2.*' }
 
-	use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
+	use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
 end)
-

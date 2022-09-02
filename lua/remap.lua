@@ -4,6 +4,8 @@ local v = Remap.vnoremap
 
 
 n("<leader>pv", ":Ex<CR>")
+n("<leader>s", ":set spell!<CR>")
+n("<leader>ws", ":w<CR>:so<CR>")
 n("<C-j>", "<C-W>j")
 n("<C-k>", "<C-W>k")
 n("<C-h>", "<C-W>h")
