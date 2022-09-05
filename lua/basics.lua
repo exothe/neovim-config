@@ -10,5 +10,7 @@ o.mouse = "a"
 o.tabstop = 2
 o.shiftwidth = 2
 o.hlsearch = false
+o.ignorecase = true
+o.smartcase = true
 
 g.mapleader = " "
