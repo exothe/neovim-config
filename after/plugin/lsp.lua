@@ -1,44 +1,51 @@
-local servers = { "tsserver", "pyright", "sumneko_lua" }
+local servers = {
+	{ name = "tsserver", formatting = false },
+	{ name = "pyright", formatting = false },
+	{ name = "sumneko_lua", formatting = false },
+	{ name = "jdtls", formatting = true },
+}
 local nvim_lsp = require("lspconfig")
 
-local on_attach = function(client, bufnr)
-	-- This disables the formatting functionality for every lsp
-	-- I want to do formatting via other formatters which are configured
-	-- with null-ls
-	client.resolved_capabilities.document_formatting = false
+local on_attach = function(formatting_enabled)
+	return function(client, bufnr)
+		-- This disables the formatting functionality for every lsp
+		-- I want to do formatting via other formatters which are configured
+		-- with null-ls
+		client.resolved_capabilities.document_formatting = formatting_enabled
 
-	-- Enable completion triggered by <c-x><c-o>
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+		-- Enable completion triggered by <c-x><c-o>
+		vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-	-- Mappings.
-	-- See `:help vim.lsp.*` for documentation on any of the below functions
-	local bufopts = { noremap = true, silent = true, buffer = bufnr }
-	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-	vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-	vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-	vim.keymap.set("n", "gK", vim.lsp.diagnostic.show_line_diagnostics, bufopts)
-	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-	vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-	vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
-	vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
-	vim.keymap.set("n", "<space>wl", function()
-		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, bufopts)
-	vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
-	vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
-	vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-	vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-	vim.keymap.set("n", "<space>f", vim.lsp.buf.formatting, bufopts)
+		-- Mappings.
+		-- See `:help vim.lsp.*` for documentation on any of the below functions
+		local bufopts = { noremap = true, silent = true, buffer = bufnr }
+		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+		vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+		vim.keymap.set("n", "gK", vim.lsp.diagnostic.show_line_diagnostics, bufopts)
+		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+		vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+		vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
+		vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+		vim.keymap.set("n", "<space>wl", function()
+			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+		end, bufopts)
+		vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
+		vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
+		vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
+		vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+		vim.keymap.set("n", "<space>f", vim.lsp.buf.formatting, bufopts)
+	end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 for _, lsp in ipairs(servers) do
-	if lsp == "sumneko_lua" then
-		nvim_lsp[lsp].setup({
+	if lsp.name == "sumneko_lua" then
+		nvim_lsp[lsp.name].setup({
 			capabilities = capabilities,
-			on_attach = on_attach,
+			on_attach = on_attach(lsp.formatting),
 			settings = {
 				Lua = {
 					runtime = {
@@ -61,9 +68,9 @@ for _, lsp in ipairs(servers) do
 			},
 		})
 	else
-		nvim_lsp[lsp].setup({
+		nvim_lsp[lsp.name].setup({
 			capabilities = capabilities,
-			on_attach = on_attach,
+			on_attach = on_attach(lsp.formatting),
 		})
 	end
 end

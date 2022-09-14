@@ -6,11 +6,13 @@ vim.cmd([[packadd packer.nvim]])
 return require("packer").startup(function(use)
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
+	use({ "williamboman/mason.nvim" })
 
 	use("folke/tokyonight.nvim")
 	use("neovim/nvim-lspconfig") -- Configurations for Nvim LSP
 	use("terrortylor/nvim-comment")
 	use("jose-elias-alvarez/null-ls.nvim")
+	use("williamboman/mason-lspconfig.nvim")
 
 	-- Autocompletion
 	use("hrsh7th/nvim-cmp")

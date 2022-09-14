@@ -1,9 +1,9 @@
-require('nvim-treesitter.configs').setup {
+require("nvim-treesitter.configs").setup({
 
-	ensure_installed = { "typescript", "python", "lua" },
-  auto_install = true,
+	ensure_installed = { "typescript", "python", "lua", "java" },
+	auto_install = true,
 
-  highlight = {
-    enable = true,
-  },
-}
+	highlight = {
+		enable = true,
+	},
+})
