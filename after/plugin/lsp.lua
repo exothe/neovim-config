@@ -3,7 +3,9 @@ local servers = {
 	{ name = "pyright", formatting = false },
 	{ name = "sumneko_lua", formatting = false },
 	{ name = "jdtls", formatting = true },
+	{ name = "rust_analyzer", formatting = true },
 }
+
 local nvim_lsp = require("lspconfig")
 
 local on_attach = function(formatting_enabled)
@@ -86,11 +88,18 @@ vim.o.completeopt = "menuone,noselect"
 cmp.setup({
 	-- Format the autocomplete menu
 	formatting = {
-		format = lspkind.cmp_format(),
+		format = lspkind.cmp_format{
+			with_text = true,
+			menu = {
+				buffer = "[buf]",
+				nvim_lsp = "[LSP]",
+				luasnip = "[snip]",
+			}
+		},
 	},
 	mapping = {
 		-- Use Tab and shift-Tab to navigate autocomplete menu
-		["<Tab>"] = function(fallback)
+		["<C-J>"] = function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
 			elseif luasnip.expand_or_jumpable() then
@@ -99,7 +108,7 @@ cmp.setup({
 				fallback()
 			end
 		end,
-		["<S-Tab>"] = function(fallback)
+		["<C-K>"] = function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
 			elseif luasnip.jumpable(-1) then
@@ -112,6 +121,23 @@ cmp.setup({
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		}),
+		["<C-Space>"] = cmp.mapping({
+        i = function()
+          if cmp.visible() then
+            cmp.abort()
+          else
+            cmp.complete()
+          end
+        end,
+        c = function()
+          if cmp.visible() then
+            cmp.close()
+          else
+            cmp.complete()
+          end
+        end,
+      }),
+			['<C-e>'] = cmp.mapping.abort(),
 	},
 	snippet = {
 		expand = function(args)
@@ -122,4 +148,7 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 	},
+	experimental = {
+		ghost_text = true,
+	}
 })

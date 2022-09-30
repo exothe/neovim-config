@@ -1,6 +1,7 @@
 local Remap = require("keymap")
 local n = Remap.nnoremap
 local v = Remap.vnoremap
+local i = Remap.inoremap
 
 n("<leader>pv", ":Ex<CR>")
 n("<leader>s", ":set spell!<CR>")
@@ -16,3 +17,5 @@ v("<", "<gv")
 v(">", ">gv")
 
 v("*", "y/\\V<C-R>=escape(@\",'/\\')<CR><CR>")
+
+i("<C-L>", "<Del>")
