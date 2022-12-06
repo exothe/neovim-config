@@ -4,6 +4,13 @@ local servers = {
 	{ name = "sumneko_lua", formatting = false },
 	{ name = "jdtls", formatting = true },
 	{ name = "rust_analyzer", formatting = true },
+	{ name = "cssls", formatting = false },
+	{ name = "svelte", formatting = true },
+	{ name = "gopls", formatting = true },
+	{ name = "clangd", formatting = true },
+	-- when using cmake: use flag -DCMAKE_EXPORT_COMPILE_COMMANDS=1 when
+	-- running cmake to generate the compile_commands.json which the lsp needs
+	{ name = "cmake", formatting = true },
 }
 
 local nvim_lsp = require("lspconfig")
