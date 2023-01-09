@@ -20,7 +20,7 @@ local on_attach = function(formatting_enabled)
 		-- This disables the formatting functionality for every lsp
 		-- I want to do formatting via other formatters which are configured
 		-- with null-ls
-		client.resolved_capabilities.document_formatting = formatting_enabled
+		client.server_capabilities.document_formatting = formatting_enabled
 
 		-- Enable completion triggered by <c-x><c-o>
 		vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -31,7 +31,7 @@ local on_attach = function(formatting_enabled)
 		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-		vim.keymap.set("n", "gK", vim.lsp.diagnostic.show_line_diagnostics, bufopts)
+		vim.keymap.set("n", "gK", vim.diagnostic.open_float, bufopts)
 		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
 		vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
 		vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
@@ -47,13 +47,36 @@ local on_attach = function(formatting_enabled)
 	end
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+local lsp_flags = {
+	debounce_text_changes = 150,
+}
+
+-- to have a border around the boxes opended by the lsp
+vim.cmd([[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]])
+vim.cmd([[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]])
+
+local border = {
+	{ "┌", "FloatBorder" },
+	{ "─", "FloatBorder" },
+	{ "┐", "FloatBorder" },
+	{ "│", "FloatBorder" },
+	{ "┘", "FloatBorder" },
+	{ "─", "FloatBorder" },
+	{ "└", "FloatBorder" },
+	{ "│", "FloatBorder" },
+}
+
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+	opts = opts or {}
+	opts.border = opts.border or border
+	return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
 
 for _, lsp in ipairs(servers) do
 	if lsp.name == "sumneko_lua" then
 		nvim_lsp[lsp.name].setup({
-			capabilities = capabilities,
+			flags = lsp_flags,
 			on_attach = on_attach(lsp.formatting),
 			settings = {
 				Lua = {
@@ -78,7 +101,7 @@ for _, lsp in ipairs(servers) do
 		})
 	else
 		nvim_lsp[lsp.name].setup({
-			capabilities = capabilities,
+			flags = lsp_flags,
 			on_attach = on_attach(lsp.formatting),
 		})
 	end
@@ -95,14 +118,14 @@ vim.o.completeopt = "menuone,noselect"
 cmp.setup({
 	-- Format the autocomplete menu
 	formatting = {
-		format = lspkind.cmp_format{
+		format = lspkind.cmp_format({
 			with_text = true,
 			menu = {
 				buffer = "[buf]",
 				nvim_lsp = "[LSP]",
 				luasnip = "[snip]",
-			}
-		},
+			},
+		}),
 	},
 	mapping = {
 		-- Use Tab and shift-Tab to navigate autocomplete menu
@@ -129,22 +152,22 @@ cmp.setup({
 			select = true,
 		}),
 		["<C-Space>"] = cmp.mapping({
-        i = function()
-          if cmp.visible() then
-            cmp.abort()
-          else
-            cmp.complete()
-          end
-        end,
-        c = function()
-          if cmp.visible() then
-            cmp.close()
-          else
-            cmp.complete()
-          end
-        end,
-      }),
-			['<C-e>'] = cmp.mapping.abort(),
+			i = function()
+				if cmp.visible() then
+					cmp.abort()
+				else
+					cmp.complete()
+				end
+			end,
+			c = function()
+				if cmp.visible() then
+					cmp.close()
+				else
+					cmp.complete()
+				end
+			end,
+		}),
+		["<C-e>"] = cmp.mapping.abort(),
 	},
 	snippet = {
 		expand = function(args)
@@ -157,5 +180,5 @@ cmp.setup({
 	},
 	experimental = {
 		ghost_text = true,
-	}
+	},
 })
