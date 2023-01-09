@@ -46,6 +46,7 @@ return require("packer").startup(function(use)
 	use("moll/vim-bbye")
 
 	use("breuckelen/vim-resize")
+	use("tommcdo/vim-exchange")
 
 	-- Git
 	use("lewis6991/gitsigns.nvim")
