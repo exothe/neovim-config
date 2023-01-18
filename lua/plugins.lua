@@ -28,7 +28,7 @@ return require("packer").startup(function(use)
 	use("nvim-treesitter/nvim-treesitter")
 	use("christianchiarulli/nvcode-color-schemes.vim")
 
-	use("jiangmiao/auto-pairs")
+	use("windwp/nvim-autopairs")
 	use("tpope/vim-surround")
 
 	use({
