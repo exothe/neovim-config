@@ -8,7 +8,11 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 	use({ "williamboman/mason.nvim" })
 
+	-- appearance
 	use("folke/tokyonight.nvim")
+	use("rmehri01/onenord.nvim")
+	use("EdenEast/nightfox.nvim")
+
 	use("neovim/nvim-lspconfig") -- Configurations for Nvim LSP
 	use("terrortylor/nvim-comment")
 	use("jose-elias-alvarez/null-ls.nvim")
@@ -26,7 +30,6 @@ return require("packer").startup(function(use)
 	use("nvim-telescope/telescope.nvim")
 
 	use("nvim-treesitter/nvim-treesitter")
-	use("christianchiarulli/nvcode-color-schemes.vim")
 
 	use("windwp/nvim-autopairs")
 	use("tpope/vim-surround")
@@ -42,7 +45,7 @@ return require("packer").startup(function(use)
 
 	use({ "akinsho/toggleterm.nvim", tag = "v2.*" })
 
-	use({ "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" })
+	use({ "akinsho/bufferline.nvim", tag = "v3.*", requires = "kyazdani42/nvim-web-devicons" })
 	use("moll/vim-bbye")
 
 	use("breuckelen/vim-resize")
