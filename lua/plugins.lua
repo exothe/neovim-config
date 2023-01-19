@@ -32,6 +32,7 @@ return require("packer").startup(function(use)
 	use("nvim-treesitter/nvim-treesitter")
 
 	use("windwp/nvim-autopairs")
+	use("windwp/nvim-ts-autotag")
 	use("tpope/vim-surround")
 
 	use({
