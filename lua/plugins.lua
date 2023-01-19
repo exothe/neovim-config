@@ -12,6 +12,7 @@ return require("packer").startup(function(use)
 	use("folke/tokyonight.nvim")
 	use("rmehri01/onenord.nvim")
 	use("EdenEast/nightfox.nvim")
+	use("xiyaowong/nvim-transparent")
 
 	use("neovim/nvim-lspconfig") -- Configurations for Nvim LSP
 	use("terrortylor/nvim-comment")
