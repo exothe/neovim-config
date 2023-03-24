@@ -26,3 +26,4 @@ v("*", "y/\\V<C-R>=escape(@\",'/\\')<CR><CR>")
 
 i("<C-L>", "<Del>")
 i("<C-c>", "<Esc>")
+vim.cmd([[ imap <silent><expr> <Tab> luasnip#expandable() ? '<Plug>luasnip-expand-snippet' : '<Tab>' ]])

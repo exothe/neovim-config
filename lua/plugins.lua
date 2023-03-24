@@ -19,6 +19,7 @@ return require("packer").startup(function(use)
 	use("terrortylor/nvim-comment")
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("williamboman/mason-lspconfig.nvim")
+	use("lervag/vimtex") -- for latex
 
 	-- Autocompletion
 	use("hrsh7th/nvim-cmp")

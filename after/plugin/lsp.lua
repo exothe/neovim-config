@@ -11,6 +11,7 @@ local servers = {
 	-- when using cmake: use flag -DCMAKE_EXPORT_COMPILE_COMMANDS=1 when
 	-- running cmake to generate the compile_commands.json which the lsp needs
 	{ name = "cmake", formatting = true },
+	{ name = "texlab", formatting = true },
 }
 
 local nvim_lsp = require("lspconfig")
