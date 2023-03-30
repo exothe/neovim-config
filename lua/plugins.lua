@@ -16,6 +16,7 @@ return require("packer").startup(function(use)
 
 	use("neovim/nvim-lspconfig") -- Configurations for Nvim LSP
 	use({ "glepnir/lspsaga.nvim", branch = "main" })
+	use("ray-x/lsp_signature.nvim")
 	use("terrortylor/nvim-comment")
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("williamboman/mason-lspconfig.nvim")
