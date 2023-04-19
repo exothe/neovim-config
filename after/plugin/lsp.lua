@@ -12,6 +12,7 @@ local servers = {
 	-- running cmake to generate the compile_commands.json which the lsp needs
 	{ name = "cmake", formatting = true },
 	{ name = "texlab", formatting = true },
+	{ name = "kotlin_language_server", formatting = true },
 }
 
 local nvim_lsp = require("lspconfig")
