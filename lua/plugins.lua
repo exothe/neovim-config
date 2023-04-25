@@ -55,6 +55,7 @@ return require("packer").startup(function(use)
 
 	use("breuckelen/vim-resize")
 	use("tommcdo/vim-exchange")
+	use("christoomey/vim-tmux-navigator")
 
 	-- Git
 	use("lewis6991/gitsigns.nvim")
