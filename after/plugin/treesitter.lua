@@ -3,11 +3,13 @@ require("nvim-treesitter.configs").setup({
 	highlight = {
 		enable = true,
 		disable = function(lang, bufnr)
-			print(lang)
 			return lang == "latex"
 		end,
 	},
 	autotag = {
+		enable = true,
+	},
+	matchup = {
 		enable = true,
 	},
 })

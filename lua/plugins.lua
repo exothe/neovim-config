@@ -40,6 +40,7 @@ return require("packer").startup(function(use)
 	use("windwp/nvim-autopairs")
 	use("windwp/nvim-ts-autotag")
 	use("tpope/vim-surround")
+	use("andymass/vim-matchup")
 
 	use({
 		"kyazdani42/nvim-tree.lua",
