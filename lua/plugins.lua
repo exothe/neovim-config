@@ -43,9 +43,9 @@ return require("packer").startup(function(use)
 	use("andymass/vim-matchup")
 
 	use({
-		"kyazdani42/nvim-tree.lua",
+		"nvim-tree/nvim-tree.lua",
 		requires = {
-			"kyazdani42/nvim-web-devicons", -- optional, for file icons
+			"nvim-tree/nvim-web-devicons", -- optional, for file icons
 		},
 	})
 
@@ -53,7 +53,7 @@ return require("packer").startup(function(use)
 
 	use({ "akinsho/toggleterm.nvim", tag = "v2.*" })
 
-	use({ "akinsho/bufferline.nvim", tag = "v3.*", requires = "kyazdani42/nvim-web-devicons" })
+	use({ "akinsho/bufferline.nvim", requires = "nvim-tree/nvim-web-devicons" })
 	use("moll/vim-bbye")
 
 	use("breuckelen/vim-resize")
