@@ -9,7 +9,8 @@ local r = ls.restore_node
 
 -- typescript snippets
 ls.config.set_config({
-	history = true,
+	history = false,
+	region_check_events = { "CursorMoved" },
 })
 ls.add_snippets("typescript", {
 	s("log", { t("console.log("), i(1), t(");") }),
