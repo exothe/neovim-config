@@ -2,6 +2,11 @@ require("lspsaga").setup({
 	symbol_in_winbar = {
 		enable = false,
 	},
+	finder = {
+		keys = {
+			expand_or_jump = "<CR>",
+		},
+	},
 })
 
 local keymap = vim.keymap.set
