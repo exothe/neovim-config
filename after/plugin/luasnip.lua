@@ -67,6 +67,44 @@ ls.add_snippets("tex", {
 		)
 	),
 	s(
+		{ trig = "subfig", dscr = "A figure environment that contains subfigures with caption and label." },
+		fmt(
+			[[
+            \begin{figure}
+                \centering
+                \begin{subfigure}[t]{0.45\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{<>}
+                    \caption{<>}
+                    \label{fig:<>}
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[t]{0.45\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{<>}
+                    \caption{<>}
+                    \label{fig:<>}
+                \end{subfigure}
+                \caption{<>}
+                \label{fig:<>}
+            \end{figure}
+          ]],
+			{
+				i(1),
+				i(2),
+				rep(1),
+				i(3),
+				i(4),
+				rep(3),
+				i(5),
+				i(6),
+			},
+			{
+				delimiters = "<>",
+			}
+		)
+	),
+	s(
 		{ trig = "\\align", dscr = "An align environment." },
 		fmt(
 			[[
