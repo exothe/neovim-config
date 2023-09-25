@@ -4,14 +4,14 @@ require("lspsaga").setup({
 	},
 	finder = {
 		keys = {
-			expand_or_jump = "<CR>",
+			toggle_or_open = "<CR>",
 		},
 	},
 })
 
 local keymap = vim.keymap.set
 
-keymap("n", "<leader>i", "<cmd>Lspsaga lsp_finder<CR>")
+keymap("n", "<leader>i", "<cmd>Lspsaga finder<CR>")
 keymap({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
 keymap("n", "<leader>rn", "<cmd>Lspsaga rename<CR>")
 keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
