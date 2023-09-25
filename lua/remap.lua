@@ -17,6 +17,8 @@ n("<C-q>", ":Bd<CR>")
 n("<C-d>", "<C-d>zz")
 n("<C-u>", "<C-u>zz")
 n("Y", "yg$")
+n("<leader>of", "<cmd>ObsidianQuickSwitch<CR>")
+n("<leader>on", "<cmd>ObsidianNew<CR>")
 
 v("<", "<gv")
 v(">", ">gv")
