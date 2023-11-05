@@ -7,6 +7,9 @@ require("lspsaga").setup({
 			toggle_or_open = "<CR>",
 		},
 	},
+	lightbulb = {
+		sign = false,
+	},
 })
 
 local keymap = vim.keymap.set
