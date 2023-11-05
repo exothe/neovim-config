@@ -37,6 +37,7 @@ return require("packer").startup(function(use)
 	use("nvim-telescope/telescope.nvim")
 
 	use("nvim-treesitter/nvim-treesitter")
+	use("nvim-treesitter/playground")
 
 	use("windwp/nvim-autopairs")
 	use("windwp/nvim-ts-autotag")
