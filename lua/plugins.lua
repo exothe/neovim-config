@@ -21,6 +21,7 @@ return require("packer").startup(function(use)
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("williamboman/mason-lspconfig.nvim")
 	use("lervag/vimtex") -- for latex
+	use({ "mfussenegger/nvim-jdtls", disable = false }) -- for java jdtls
 
 	-- Autocompletion
 	use("hrsh7th/nvim-cmp")
