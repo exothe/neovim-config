@@ -2,7 +2,6 @@ local servers = {
 	{ name = "tsserver", formatting = false },
 	{ name = "pyright", formatting = false },
 	{ name = "lua_ls", formatting = false },
-	{ name = "jdtls", formatting = true },
 	{ name = "rust_analyzer", formatting = true },
 	{ name = "cssls", formatting = false },
 	{ name = "svelte", formatting = true },
