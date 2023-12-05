@@ -19,6 +19,13 @@ n("<C-u>", "<C-u>zz")
 n("Y", "yg$")
 n("<leader>of", "<cmd>ObsidianQuickSwitch<CR>")
 n("<leader>on", "<cmd>ObsidianNew<CR>")
+n("gf", function()
+	if require("obsidian").util.cursor_on_markdown_link() then
+		return ":ObsidianFollowLink<CR>"
+	else
+		return "gf"
+	end
+end)
 
 v("<", "<gv")
 v(">", ">gv")
