@@ -18,7 +18,7 @@ return require("packer").startup(function(use)
 	use({ "glepnir/lspsaga.nvim", branch = "main" })
 	use("ray-x/lsp_signature.nvim")
 	use("numToStr/Comment.nvim")
-	use("jose-elias-alvarez/null-ls.nvim")
+	use("nvimtools/none-ls.nvim")
 	use("williamboman/mason-lspconfig.nvim")
 	use("lervag/vimtex") -- for latex
 	use({ "mfussenegger/nvim-jdtls", disable = false }) -- for java jdtls
