@@ -12,6 +12,8 @@ local servers = {
 	{ name = "cmake", formatting = true },
 	{ name = "texlab", formatting = true },
 	{ name = "kotlin_language_server", formatting = true },
+	{ name = "tailwindcss", formatting = false },
+	{ name = "eslint", formatting = false },
 }
 
 local nvim_lsp = require("lspconfig")
