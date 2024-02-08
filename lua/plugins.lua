@@ -22,6 +22,7 @@ return require("packer").startup(function(use)
 	use("williamboman/mason-lspconfig.nvim")
 	use("lervag/vimtex") -- for latex
 	use({ "mfussenegger/nvim-jdtls", disable = false }) -- for java jdtls
+	use("vim-test/vim-test")
 
 	-- Autocompletion
 	use("hrsh7th/nvim-cmp")
