@@ -3,6 +3,7 @@ local n = Remap.nnoremap
 local v = Remap.vnoremap
 local i = Remap.inoremap
 local c = Remap.cnoremap
+local t = Remap.tnoremap
 
 n("<leader>pv", ":Ex<CR>")
 n("<leader>s", ":set spell!<CR>")
@@ -46,5 +47,7 @@ c("<A-h>", "<left>")
 c("<A-l>", "<right>")
 c("<A-k>", "<up>")
 c("<A-j>", "<down>")
+
+t("<C-o>", "<C-\\><C-n>")
 
 vim.cmd([[ imap <silent><expr> <Tab> luasnip#expandable() ? '<Plug>luasnip-expand-snippet' : '<Tab>' ]])
