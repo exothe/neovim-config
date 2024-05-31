@@ -27,6 +27,7 @@ n("gf", function()
 		return "gf"
 	end
 end)
+n("<leader>mf", 'i<C-r>=expand("%:t:r")<CR><Esc>')
 
 v("<", "<gv")
 v(">", ">gv")
