@@ -17,6 +17,51 @@ ls.config.set_config({
 })
 ls.add_snippets("typescript", {
 	s("log", { t("console.log("), i(1), t(");") }),
+	s("component", { t("export function "), f(function(args, snip)
+        local name = snip.env.TM_FILENAME
+        i, _ = string.find(name, "%.")
+        return string.sub(name, 1, i-1)
+    end, {}), t({
+        "() {",
+        "\t",
+    }), i(1), t({"", "}"}) }),
+
+    s("electron-preload-function", fmt(
+        [[
+        \/(
+            ...params: Parameters<typeof \/>
+        ): ReturnType<typeof \/> {
+            return ipcRenderer.invoke('\/', ...params);
+        },
+        ]],
+          {
+              i(1),
+              rep(1),
+              rep(1),
+              rep(1),
+          },
+		  {
+		  	  delimiters = "\\/",
+		  }
+		)
+    ),
+    s("electron-main-function",
+		fmt(
+			[[
+            ipcMain.handle('\/', (_, ...params: Parameters<typeof \/>) =>
+                \/(...params),
+            );
+          ]],
+			{
+				i(1),
+				rep(1),
+				rep(1),
+			},
+			{
+				delimiters = "\\/",
+			}
+		)
+    ),
 })
 
 ls.filetype_set("typescriptreact", { "typescript" })
