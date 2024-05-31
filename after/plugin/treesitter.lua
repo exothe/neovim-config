@@ -6,9 +6,6 @@ require("nvim-treesitter.configs").setup({
 			return lang == "latex"
 		end,
 	},
-	autotag = {
-		enable = true,
-	},
 	matchup = {
 		enable = true,
 	},
