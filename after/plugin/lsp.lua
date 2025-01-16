@@ -1,5 +1,5 @@
 local servers = {
-	{ name = "tsserver", formatting = false },
+	{ name = "ts_ls", formatting = false },
 	{ name = "pyright", formatting = false },
 	{ name = "lua_ls", formatting = false },
 	{ name = "rust_analyzer", formatting = true },
@@ -44,7 +44,7 @@ local on_attach = function(formatting_enabled)
 		end, bufopts)
 		vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
 		vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-		vim.keymap.set("n", "<space>f", vim.lsp.buf.format, bufopts)
+		vim.keymap.set("n", "<space>p", vim.lsp.buf.format, bufopts)
 	end
 end
 

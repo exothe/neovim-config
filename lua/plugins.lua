@@ -15,7 +15,7 @@ return require("packer").startup(function(use)
 	use("xiyaowong/nvim-transparent")
 
 	use("neovim/nvim-lspconfig") -- Configurations for Nvim LSP
-	use({ "glepnir/lspsaga.nvim", branch = "main" })
+	use({ "nvimdev/lspsaga.nvim", after = "nvim-lspconfig" })
 	use("ray-x/lsp_signature.nvim")
 	use("numToStr/Comment.nvim")
 	use("nvimtools/none-ls.nvim")
@@ -23,6 +23,7 @@ return require("packer").startup(function(use)
 	use("lervag/vimtex") -- for latex
 	use({ "mfussenegger/nvim-jdtls", disable = false }) -- for java jdtls
 	use("vim-test/vim-test")
+	use("dmmulroy/tsc.nvim")
 
 	-- Autocompletion
 	use("hrsh7th/nvim-cmp")

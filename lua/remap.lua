@@ -5,7 +5,6 @@ local i = Remap.inoremap
 local c = Remap.cnoremap
 local t = Remap.tnoremap
 
-n("<leader>pv", ":Ex<CR>")
 n("<leader>s", ":set spell!<CR>")
 n("<leader>ws", ":w<CR>:so<CR>")
 n("<C-j>", "<C-W>j")
@@ -28,6 +27,9 @@ n("gf", function()
 	end
 end)
 n("<leader>mf", 'i<C-r>=expand("%:t:r")<CR><Esc>')
+n("<M-j>", ":cnext<CR>")
+n("<M-k>", ":cprevious<CR>")
+n("<M-q>", ":cclose<CR>")
 
 v("<", "<gv")
 v(">", ">gv")
