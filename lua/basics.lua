@@ -19,5 +19,6 @@ o.hlsearch = false
 o.ignorecase = true
 o.smartcase = true
 o.textwidth = 120
+o.listchars = "eol:⏎,tab:⇥¬¬,trail:·,nbsp:⎵"
 
 g.mapleader = " "
