@@ -17,35 +17,92 @@ ls.config.set_config({
 })
 ls.add_snippets("typescript", {
 	s("log", { t("console.log("), i(1), t(");") }),
-	s("component", { t("export function "), f(function(args, snip)
-        local name = snip.env.TM_FILENAME
-        i, _ = string.find(name, "%.")
-        return string.sub(name, 1, i-1)
-    end, {}), t({
-        "() {",
-        "\t",
-    }), i(1), t({"", "}"}) }),
+	s("component", {
+		t("export function "),
+		f(function(args, snip)
+			local name = snip.env.TM_FILENAME
+			i, _ = string.find(name, "%.")
+			return string.sub(name, 1, i - 1)
+		end, {}),
+		t({
+			"() {",
+			"\t",
+		}),
+		i(1),
+		t({ "", "}" }),
+	}),
+	s(
+		"useState",
+		fmt(
+			[[
+        const [\/, set\/] = React.useState<\/>(\/);
+        ]],
+			{
+				i(1),
+				f(function(args)
+					return args[1][1]:gsub("^%l", string.upper)
+				end, { 1 }),
+				i(2),
+				i(3),
+			},
+			{
+				delimiters = "\\/",
+			}
+		)
+	),
+	s(
+		"zodSchema2Type",
+		fmt(
+			[[
+        export type \/ = z.infer<typeof \/>;
+        ]],
+			{
+				i(1),
+				rep(1),
+			},
+			{
+				delimiters = "\\/",
+			}
+		)
+	),
+	s(
+		"sleep",
+		fmt(
+			[[
+        await ((ms: number) => new Promise((r) => setTimeout(r, ms)))(\/);
+        ]],
+			{
+				i(1),
+			},
+			{
+				delimiters = "\\/",
+			}
+		)
+	),
 
-    s("electron-preload-function", fmt(
-        [[
+	s(
+		"electron-preload-function",
+		fmt(
+			[[
         \/(
             ...params: Parameters<typeof \/>
         ): ReturnType<typeof \/> {
             return ipcRenderer.invoke('\/', ...params);
         },
         ]],
-          {
-              i(1),
-              rep(1),
-              rep(1),
-              rep(1),
-          },
-		  {
-		  	  delimiters = "\\/",
-		  }
+			{
+				i(1),
+				rep(1),
+				rep(1),
+				rep(1),
+			},
+			{
+				delimiters = "\\/",
+			}
 		)
-    ),
-    s("electron-main-function",
+	),
+	s(
+		"electron-main-function",
 		fmt(
 			[[
             ipcMain.handle('\/', (_, ...params: Parameters<typeof \/>) =>
@@ -61,7 +118,73 @@ ls.add_snippets("typescript", {
 				delimiters = "\\/",
 			}
 		)
-    ),
+	),
+	s(
+		"react-context-with-state",
+		fmt(
+			[[
+import React from 'react';
+
+export interface \/State {
+    \/
+}
+
+export const \/Context = React.createContext<{
+    \/State: \/State;
+    set\/State: React.Dispatch<React.SetStateAction<\/State>>;
+} | null>(null);
+
+export function \/ContextProvider({ children }: React.PropsWithChildren) {
+    const [\/State, set\/State] = React.useState<\/State>({
+        \/
+    });
+
+    return <\/Context.Provider value={{ \/State, set\/State }}>{children}<//\/Context.Provider>;
+}
+
+export function use\/Context() {
+    const context = React.useContext(\/Context);
+
+    if (context === null) {
+        throw Error('\/Context used without a provider');
+    }
+    return context;
+}
+        ]],
+			{
+				rep(1),
+				i(2),
+				i(1),
+				f(function(args)
+					return args[1][1]:gsub("^%l", string.lower)
+				end, { 1 }),
+				rep(1),
+				rep(1),
+				rep(1),
+
+				rep(1),
+				f(function(args)
+					return args[1][1]:gsub("^%l", string.lower)
+				end, { 1 }),
+				rep(1),
+				rep(1),
+				i(3),
+				rep(1),
+				f(function(args)
+					return args[1][1]:gsub("^%l", string.lower)
+				end, { 1 }),
+				rep(1),
+				rep(1),
+
+				rep(1),
+				rep(1),
+				rep(1),
+			},
+			{
+				delimiters = "\\/",
+			}
+		)
+	),
 })
 
 ls.filetype_set("typescriptreact", { "typescript" })
