@@ -1,75 +1,86 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
--- Only required if you have packer configured as `opt`
-vim.cmd([[packadd packer.nvim]])
-
-return require("packer").startup(function(use)
-	-- Packer can manage itself
-	use("wbthomason/packer.nvim")
-	use({ "williamboman/mason.nvim" })
-
+local plugins = {
 	-- appearance
-	use("folke/tokyonight.nvim")
-	use("rmehri01/onenord.nvim")
-	use("EdenEast/nightfox.nvim")
-	use("xiyaowong/nvim-transparent")
+	"folke/tokyonight.nvim",
+	"rmehri01/onenord.nvim",
+	"EdenEast/nightfox.nvim",
+	"xiyaowong/nvim-transparent",
 
-	use("neovim/nvim-lspconfig") -- Configurations for Nvim LSP
-	use({ "nvimdev/lspsaga.nvim", after = "nvim-lspconfig" })
-	use("ray-x/lsp_signature.nvim")
-	use("numToStr/Comment.nvim")
-	use("nvimtools/none-ls.nvim")
-	use("williamboman/mason-lspconfig.nvim")
-	use("lervag/vimtex") -- for latex
-	use({ "mfussenegger/nvim-jdtls", disable = false }) -- for java jdtls
-	use("vim-test/vim-test")
-	use("dmmulroy/tsc.nvim")
+	"williamboman/mason.nvim",
+	"neovim/nvim-lspconfig", -- Configurations for Nvim LSP
+	{ "nvimdev/lspsaga.nvim", dependencies = { "nvim-lspconfig" } },
+	"ray-x/lsp_signature.nvim",
+	"numToStr/Comment.nvim",
+	"nvimtools/none-ls.nvim",
+	"williamboman/mason-lspconfig.nvim",
+	"lervag/vimtex",
+	"mfussenegger/nvim-jdtls",
+	"vim-test/vim-test",
+	"dmmulroy/tsc.nvim",
 
 	-- Autocompletion
-	use("hrsh7th/nvim-cmp")
-	use("hrsh7th/cmp-nvim-lsp")
-	use("hrsh7th/cmp-buffer")
-	use("hrsh7th/cmp-path")
-	use("L3MON4D3/LuaSnip")
-	use("saadparwaiz1/cmp_luasnip")
-	use("onsails/lspkind-nvim")
+	"hrsh7th/nvim-cmp",
+	"hrsh7th/cmp-nvim-lsp",
+	"hrsh7th/cmp-buffer",
+	"hrsh7th/cmp-path",
+	"L3MON4D3/LuaSnip",
+	"saadparwaiz1/cmp_luasnip",
+	"onsails/lspkind-nvim",
 
-	use("nvim-lua/plenary.nvim")
-	use("nvim-lua/popup.nvim")
-	use("nvim-telescope/telescope.nvim")
+	"nvim-lua/plenary.nvim",
+	"nvim-lua/popup.nvim",
+	"nvim-telescope/telescope.nvim",
 
-	use("nvim-treesitter/nvim-treesitter")
-	use("nvim-treesitter/playground")
+	"nvim-treesitter/nvim-treesitter",
+	"nvim-treesitter/playground",
 
-	use("windwp/nvim-autopairs")
-	use("windwp/nvim-ts-autotag")
-	use("tpope/vim-surround")
-	use("andymass/vim-matchup")
+	"windwp/nvim-autopairs",
+	"windwp/nvim-ts-autotag",
+	"tpope/vim-surround",
+	"andymass/vim-matchup",
 
-	use({
+	{
 		"nvim-tree/nvim-tree.lua",
-		requires = {
+		dependencies = {
 			"nvim-tree/nvim-web-devicons", -- optional, for file icons
 		},
-	})
+	},
 
-	use("folke/which-key.nvim")
+	"folke/which-key.nvim",
 
-	use({ "akinsho/toggleterm.nvim", tag = "v2.*" })
+	{ "akinsho/bufferline.nvim", dependencies = "nvim-tree/nvim-web-devicons" },
+	"moll/vim-bbye",
 
-	use({ "akinsho/bufferline.nvim", requires = "nvim-tree/nvim-web-devicons" })
-	use("moll/vim-bbye")
-
-	use("breuckelen/vim-resize")
-	use("tommcdo/vim-exchange")
-	use("christoomey/vim-tmux-navigator")
-	use("preservim/vimux")
+	"breuckelen/vim-resize",
+	"tommcdo/vim-exchange",
+	"christoomey/vim-tmux-navigator",
+	"preservim/vimux",
 
 	-- Git
-	use("lewis6991/gitsigns.nvim")
+	"lewis6991/gitsigns.nvim",
 
-	use({
+	{
 		"epwalsh/obsidian.nvim",
-		requires = { "nvim-lua/plenary.nvim" },
-	})
-end)
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
+}
+
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out, "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+	spec = plugins,
+})
