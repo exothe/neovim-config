@@ -188,6 +188,7 @@ export function use\/Context() {
 })
 
 ls.filetype_set("typescriptreact", { "typescript" })
+ls.filetype_set("astro", { "typescript" })
 
 -- latex snippets
 ls.add_snippets("tex", {

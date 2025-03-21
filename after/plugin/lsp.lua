@@ -14,6 +14,7 @@ local servers = {
 	{ name = "kotlin_language_server", formatting = true },
 	{ name = "tailwindcss", formatting = false },
 	{ name = "eslint", formatting = false },
+	{ name = "astro", formatting = true },
 }
 
 local nvim_lsp = require("lspconfig")
