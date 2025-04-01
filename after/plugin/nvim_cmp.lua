@@ -66,6 +66,7 @@ cmp.setup({
 	},
 	sources = {
 		{ name = "luasnip" },
+		{ name = "cmp-dbee" },
 		{ name = "nvim_lsp" },
 		{ name = "path" },
 		{
