@@ -1,6 +1,12 @@
-require("dbee").setup()
+local dbee = require("dbee")
+dbee.setup()
 
 local Remap = require("keymap")
 local n = Remap.nnoremap
 
-n("<leader>md", ":lua require'dbee'.open()<CR>")
+n("<leader>md", function()
+	dbee.open()
+end)
+n("<leader>mD", function()
+	dbee.close()
+end)
