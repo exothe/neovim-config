@@ -105,6 +105,7 @@ for _, lsp in ipairs(servers) do
 		nvim_lsp[lsp.name].setup({
 			flags = lsp_flags,
 			on_attach = on_attach(lsp.formatting),
+			capabilities = require("cmp_nvim_lsp").default_capabilities(),
 		})
 	end
 end
