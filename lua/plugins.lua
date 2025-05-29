@@ -79,6 +79,11 @@ local plugins = {
 
 	{ "akinsho/bufferline.nvim", dependencies = "nvim-tree/nvim-web-devicons" },
 	"moll/vim-bbye",
+	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
 
 	"breuckelen/vim-resize",
 	"tommcdo/vim-exchange",
